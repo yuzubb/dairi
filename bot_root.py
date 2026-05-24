@@ -55,9 +55,10 @@ else:
 # =====================
 # ここを編集してください
 # =====================
-BOT_TOKEN = "ここにtoken"
+BOT_TOKEN = "MTUwODAxMjM1MzU4MzU4MzMwMg.GD2xI8.qn0J4vXnM-ehcQ0BgvaU2qI9BybjiDTt8aicXc"
 ADMIN_IDS = [
-    1460561897802694739,  # ここに管理者のDiscord IDを入れる（複数可）
+    1483054547504205906,
+    1455012819291340862,# ここに管理者のDiscord IDを入れる（複数可）
 ]
 ALLOWED_CHANNEL_IDS = []  # 空のままで全チャンネルOK
 
