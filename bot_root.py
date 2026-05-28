@@ -37,20 +37,16 @@ logger = logging.getLogger(__name__)
 
 sys.path.append(os.path.join(os.getcwd(), "src"))
 
-import importlib.util as _ilu, os as _os
-_pp_path = _os.path.join(_os.path.dirname(__file__) if '__file__' in dir() else '.', 'paypayu.py')
-if _os.path.exists(_pp_path):
-    _pp_spec = _ilu.spec_from_file_location('paypayu', _pp_path)
-    paypayu = _ilu.module_from_spec(_pp_spec)
-    _pp_spec.loader.exec_module(paypayu)
-    PAYPAY_AVAILABLE = True
-else:
-    try:
-        import paypayu
-        PAYPAY_AVAILABLE = True
-    except ImportError:
-        logger.warning("paypayu.py が見つかりません")
-        PAYPAY_AVAILABLE = False
+import sys as _sys
+import types as _types
+
+class _PaypayProxy:
+    """paypayu.xxxx の呼び出しをこのモジュール自身にリダイレクト"""
+    def __getattr__(self, name):
+        return globals()[name]
+
+paypayu = _PaypayProxy()
+PAYPAY_AVAILABLE = True
 
 # =====================
 # ここを編集してください
